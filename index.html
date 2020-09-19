@@ -7,48 +7,45 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/app.css">
     <link rel="stylesheet" href="./assets/css/media_queries.css">
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <a href="#home"><img src="./assets/logo.svg" alt="logo"></a>
-            <h2>DASHBOARD</h2>
-            <hr>
-        </div>
+        <a href="#home" class="logo"><img src="./assets/logo.svg" alt="logo"></a>
         <div class="user_logout">
-            <div id="img_logout"><img src="./assets/person-white-18dp.svg" alt="logo"></div>
             <h3>LOGOUT</h3>
+            <div id="img_logout">                
+                <img src="./assets/person-white-18dp.svg" alt="logo">
+            </div>
+        </div>
+        <div class="title">
+            <h3>DASHBOARD</h3>
+            <hr>
         </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#colors">Colors</a></li>
-            <hr>
-            <li><a href="#users">Users</a></li>
-            <hr>
-            <li><a href="#settings">Settings</a></li>
-        </ul>
+
+    <nav class="topnav" id="myNav">
+        <a href="javascript:void(0);" class="icon" onclick="mobile_nav()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="#colors" active>Colors</a>
+        <hr>
+        <a href="#users">Users</a>
+        <hr>
+        <a href="#settings">Settings</a>
+        <hr>
+        <a href="#logout">Logout</a>
         <footer>&copy;2020 Netmechanics</footer>
     </nav>
 
-    <main>
-        <section>
-            <h3>Welcome</h3>
-        </section>
-    
-        <section class="colors"></section>
-    
-        <section class="users"></section>
-    
-        <section class="settings"></section>
-    </main>
+    <main></main>
     
 
 </body>
-<script src="./assets/app.js"></script>
+<script src="./assets/js/app.js"></script>
 </html>
 
 
