@@ -1,0 +1,33 @@
+main {
+    position: fixed;
+    left: 26%;
+    top: 11%;
+    width: 75%;
+}
+
+.grid-container {
+    display: grid;
+    height: 280px;
+    align-content: center;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px;
+    padding: 30px;
+}
+  
+.grid-container > div {
+    background-color: #2196F3;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+}
+
+#title {
+    left: 4%;
+    position: absolute;
+}
+
+#sub-title {
+    position: absolute;
+    top: 0%;
+    left: 85%;
+}
