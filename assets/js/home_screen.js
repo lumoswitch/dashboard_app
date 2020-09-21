@@ -23,66 +23,19 @@ function users() {
 
     var users_body = '\
     <h3 id="title">Users</h3><a href="#" id="delete-btn">DELETE</a>\
-    <table>\
-            <tr>\
-                <th> </th>\
-                <th>ID</th>\
-                <th>LAST NAME</th>\
-                <th>FIRST NAME</th>\
-                <th>EMAIL</th>\
-                <th>AVATAR</th>\
-            </tr>\
-            <tr>\
-                <td><input type="checkbox" /></td>\
-                <td>1</td>\
-                <td>Alfreds Futterkiste</td>\
-                <td>Maria Anders</td>\
-                <td>Germany</td>\
-                <td>Maria Anders</td>\
-            </tr>\
-            <tr>\
-                <td><input type="checkbox" /></td>\
-                <td>2</td>\
-                <td>Alfreds Futterkiste</td>\
-                <td>Centro comercial Moctezuma</td>\
-                <td>Francisco Chang</td>\
-                <td>Mexico</td>\
-            </tr>\
-            <tr>\
-                <td><input type="checkbox" /></td>\
-                <td>3</td>\
-                <td>Alfreds Futterkiste</td>\
-                <td>Ernst Handel</td>\
-                <td>Roland Mendel</td>\
-                <td>Austria</td>\
-            </tr>\
-            <tr>\
-                <td><input type="checkbox" /></td>\
-                <td>4</td>\
-                <td>Alfreds Futterkiste</td>\
-                <td>Island Trading</td>\
-                <td>Helen Bennett</td>\
-                <td>UK</td>\
-            </tr>\
-            <tr>\
-                <td><input type="checkbox" /></td>\
-                <td>5</td>\
-                <td>Alfreds Futterkiste</td>\
-                <td>Laughing Bacchus Winecellars</td>\
-                <td>Yoshi Tannamuri</td>\
-                <td>Canada</td>\
-            </tr>\
-            <tr>\
-                <td><input type="checkbox" /></td>\
-                <td>6</td>\
-                <td>Alfreds Futterkiste</td>\
-                <td>Magazzini Alimentari Riuniti</td>\
-                <td>Giovanni Rovelli</td>\
-                <td>Italy</td>\
-            </tr>\
+    <table id="myTable">\
+        <tr>\
+            <th> </th>\
+            <th>ID</th>\
+            <th>LAST NAME</th>\
+            <th>FIRST NAME</th>\
+            <th>EMAIL</th>\
+            <th>AVATAR</th>\
+        </tr>\
     </table>';
 
     document.getElementById("contents").innerHTML = users_body;
+    ajaxRequest("https://reqres.in/api/users",create_table);
 }
 
 function settings() {
