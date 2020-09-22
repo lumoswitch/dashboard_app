@@ -16,7 +16,7 @@
 <body>
 
     <header>
-        <a href="#home" class="logo"><img src="./assets/logo.svg" alt="logo" onclick="home_screen()" active></a>
+        <a href="#home" class="logo" active><img src="./assets/logo.svg" alt="logo" onclick="home_screen()" ></a>
         <div class="user_logout">
             <h3>LOGOUT</h3>
             <div id="img_logout">                
@@ -35,16 +35,16 @@
         </a>
         <a href="#colors" onclick="colors()">Colors</a>
         <hr>
-        <a href="#users" onclick="users()">Users</a>
+        <a id="users-btn" href="#users" onclick="users()">Users</a>
         <hr>
-        <a href="#settings" onclick="settings()">Settings</a>
+        <a href="#settings">Settings</a>
         <hr>
         <a href="#logout">Logout</a>
         <footer>&copy;2020 Netmechanics</footer>
     </nav>
 
     <main id="contents"></main>
-    
+   
 
 </body>
 <script src="./assets/js/app.js"></script>

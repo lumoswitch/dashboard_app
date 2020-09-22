@@ -5,8 +5,9 @@
  * returns none
  */
 function home_screen() {
-
-    document.getElementById("container").innerHTML = "<h3>Welcome</h3>";
+    document.getElementById("myUsers").style.display = "none";
+    document.getElementById("myColors").style.display = "none";
+    document.getElementById("greeting").style.display = "block";
 }
 
 /**
@@ -16,8 +17,10 @@ function home_screen() {
  * returns none
  */
 function settings() {
-
-    document.getElementById("contents").innerHTML = "<h3>Settings</h3>";
+    document.getElementById("contents").innerHTML += "<h3>Settings</h3>";
+    document.getElementById("myUsers").style.display = "none";
+    document.getElementById("myColors").style.display = "none";
+    document.getElementById("greeting").style.display = "none";
 }
 
 /**
@@ -63,9 +66,40 @@ function ajaxRequest(uri,handler){
  */
 function response_handler(data,callback){
     
+    
     if (data.status == 200) {
         var jfile = JSON.parse(data.responseText);
         console.log(jfile);
         callback(jfile);
+       
     }
 }
+
+function init_page(){
+    var colors_body = '\<div id="myColors">\
+    <h3 id="title">Colors</h3><h3 id="sub-title">Items: </h3>\
+    <div id="colors" class="grid-container">\
+    <div>1</div>\
+    <div>2</div>\
+    <div>3</div>\
+    <div>4</div>\
+    <div>5</div>\
+    <div>6</div>\
+    </div></div>';
+    document.getElementById("contents").innerHTML += colors_body;
+    document.getElementById("contents").innerHTML += "<h3 class='animate-bottom' id='greeting'>Welcome</h3>";
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myColors").style.display = "none";
+    document.getElementById("greeting").style.display = "block";
+}
+
+window.onload = function() {
+    ajaxRequest("https://reqres.in/api/users",response_handler);
+    
+    var loading = '\
+    <div id="loader" class="load"></div> ';
+    document.getElementById("contents").innerHTML += loading;
+    setTimeout(init_page, 1000);
+    
+    
+};

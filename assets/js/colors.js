@@ -5,19 +5,17 @@
  * returns none
  */
 function colors() {
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("myUsers").style.display = "none";
+    document.getElementById("greeting").style.display = "none";
+    
+    setTimeout(init_colors, 1000);
+}
 
-    var colors_body = '\
-    <h3 id="title">Colors</h3><h3 id="sub-title">Items: </h3>\
-    <div class="grid-container">\
-    <div>1</div>\
-    <div>2</div>\
-    <div>3</div>\
-    <div>4</div>\
-    <div>5</div>\
-    <div>6</div>\
-    </div>';
-
-    document.getElementById("contents").innerHTML = colors_body;
+function init_colors(){
+    
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myColors").style.display = "block";
 }
 
 
