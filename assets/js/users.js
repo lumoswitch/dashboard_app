@@ -8,7 +8,7 @@ function users() {
     document.getElementById("myColors").style.display = "none";
     document.getElementById("greeting").style.display = "none";
     document.getElementById("loader").style.display = "block";
-
+    
     setTimeout(init_users, 1000);
 }
 
@@ -39,34 +39,37 @@ function create_table(jfile) {
 
     document.getElementById("contents").innerHTML += users_body;
 
-    var j=1;
-
-    var table = document.getElementById("myTable");
-    
-    for (var i = 0; i < jfile.data.length; i++) {
-        var row = table.insertRow(j);
-        row.setAttribute("id", j, 0);
-        row.insertCell(0).innerHTML = "<input id='user_check"+j+"' type='checkbox' onclick='delete_user("+j+");' />";
-        row.insertCell(1).innerHTML = jfile.data[i].id;
-        row.insertCell(2).innerHTML = jfile.data[i].last_name;
-        row.insertCell(3).innerHTML = jfile.data[i].first_name;
-        row.insertCell(4).innerHTML = jfile.data[i].email;
-        row.insertCell(5).innerHTML = (jfile.data[i].avatar).substring(jfile.data[i].avatar.lastIndexOf('/', jfile.data[i].avatar.lastIndexOf('/') - 1) + 1).split('/')[0];
-        sessionStorage.setItem("id"+j,jfile.data[i].id);
-        j++;
-    }
+    create_users(jfile);
     document.getElementById("myUsers").style.display = "none";
 
 }
 
 /**
- * Function sort_ids
- * Arguments: none
- * Description: sorts a table by id
+ * Function create_users
+ * Arguments: jfile -> a json file
+ * Description: creates users' table rows with every information needed
  * returns none
  */
-function sort_ids() {
-    
+function create_users(jfile) {
+    var j = 1;
+
+    var table = document.getElementById("myTable");
+    var users_array = jfile.data;
+    users_array.sort((userA, userB) => {
+        return userA.id - userB.id;
+    });
+    for (var i = 0; i < users_array.length; i++) {
+        var row = table.insertRow(j);
+        row.setAttribute("id", j, 0);
+        row.insertCell(0).innerHTML = "<input id='user_check" + j + "' type='checkbox' onclick='delete_user(" + j + ");' />";
+        row.insertCell(1).innerHTML = users_array[i].id;
+        row.insertCell(2).innerHTML = users_array[i].last_name;
+        row.insertCell(3).innerHTML = users_array[i].first_name;
+        row.insertCell(4).innerHTML = users_array[i].email;
+        row.insertCell(5).innerHTML = (users_array[i].avatar).substring(users_array[i].avatar.lastIndexOf('/', users_array[i].avatar.lastIndexOf('/') - 1) + 1).split('/')[0];
+        sessionStorage.setItem("id" + j, users_array[i].id);
+        j++;
+    }
 }
 
 /**

@@ -108,7 +108,7 @@ hr{
 	visibility: hidden;
 }
 
-nav > footer{
+footer{
 	position: fixed;
 	top: 95%;
 	padding-left: 2%;

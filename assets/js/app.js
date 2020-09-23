@@ -46,11 +46,11 @@ function mobile_nav(){
  * Description: makes an AJAX request to a server and on a success gets data back
  * returns none
  */
-function ajaxRequest(uri,handler){
+function ajaxRequest(uri,handler,callback){
 
     var xhttp = new XMLHttpRequest();
     
-    xhttp.onreadystatechange = function () { if(xhttp.readyState==4){ handler(xhttp,create_table); }};    
+    xhttp.onreadystatechange = function () { if(xhttp.readyState==4){ handler(xhttp,callback); }};    
     xhttp.open("GET", uri, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -65,8 +65,6 @@ function ajaxRequest(uri,handler){
  * returns none
  */
 function response_handler(data,callback){
-    
-    
     if (data.status == 200) {
         var jfile = JSON.parse(data.responseText);
         console.log(jfile);
@@ -76,30 +74,20 @@ function response_handler(data,callback){
 }
 
 function init_page(){
-    var colors_body = '\<div id="myColors">\
-    <h3 id="title">Colors</h3><h3 id="sub-title">Items: </h3>\
-    <div id="colors" class="grid-container">\
-    <div>1</div>\
-    <div>2</div>\
-    <div>3</div>\
-    <div>4</div>\
-    <div>5</div>\
-    <div>6</div>\
-    </div></div>';
-    document.getElementById("contents").innerHTML += colors_body;
+    
     document.getElementById("contents").innerHTML += "<h3 class='animate-bottom' id='greeting'>Welcome</h3>";
     document.getElementById("loader").style.display = "none";
-    document.getElementById("myColors").style.display = "none";
     document.getElementById("greeting").style.display = "block";
 }
 
 window.onload = function() {
-    ajaxRequest("https://reqres.in/api/users",response_handler);
-    
+   
+
     var loading = '\
     <div id="loader" class="load"></div> ';
     document.getElementById("contents").innerHTML += loading;
     setTimeout(init_page, 1000);
     
-    
+    ajaxRequest("https://reqres.in/api/users",response_handler,create_table);
+    ajaxRequest("https://reqres.in/api/products",response_handler,create_banners);
 };
