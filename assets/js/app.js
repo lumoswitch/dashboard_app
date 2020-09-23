@@ -87,7 +87,13 @@ window.onload = function() {
     <div id="loader" class="load"></div> ';
     document.getElementById("contents").innerHTML += loading;
     setTimeout(init_page, 1000);
-    
-    ajaxRequest("https://reqres.in/api/users",response_handler,create_table);
+        
     ajaxRequest("https://reqres.in/api/products",response_handler,create_banners);
+    
+    if(sessionStorage.getItem("table") == null){
+        ajaxRequest("https://reqres.in/api/users",response_handler,create_table);
+    }else{
+        console.log(JSON.parse(sessionStorage.getItem("table")));
+        create_users(JSON.parse(sessionStorage.getItem("table")));
+    }
 };

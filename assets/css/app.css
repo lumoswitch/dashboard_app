@@ -65,6 +65,7 @@ header a.active {
 	position: fixed;
 	left: 0%;
 	top: 2%;
+	z-index: 1;
 }
 
 .topnav a {

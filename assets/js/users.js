@@ -24,6 +24,24 @@ function init_users(){
  * returns none
  */
 function create_table(jfile) {
+    
+    var users_array = jfile.data;
+    users_array.sort((userA, userB) => {
+        return userA.id - userB.id;
+    });
+    console.log(users_array);
+    create_users(users_array);
+    
+   
+}
+
+/**
+ * Function create_users
+ * Arguments: jfile -> a json file
+ * Description: creates users' table rows with every information needed
+ * returns none
+ */
+function create_users(users_array) {
     var users_body = '\<div id="myUsers">\
     <h3 id="title">Users</h3><button id="delete-btn" disabled>DELETE</button>\
     <table id="myTable">\
@@ -38,30 +56,15 @@ function create_table(jfile) {
     </table></div>';
 
     document.getElementById("contents").innerHTML += users_body;
-
-    create_users(jfile);
     document.getElementById("myUsers").style.display = "none";
-
-}
-
-/**
- * Function create_users
- * Arguments: jfile -> a json file
- * Description: creates users' table rows with every information needed
- * returns none
- */
-function create_users(jfile) {
     var j = 1;
 
     var table = document.getElementById("myTable");
-    var users_array = jfile.data;
-    users_array.sort((userA, userB) => {
-        return userA.id - userB.id;
-    });
+    
     for (var i = 0; i < users_array.length; i++) {
         var row = table.insertRow(j);
         row.setAttribute("id", j, 0);
-        row.insertCell(0).innerHTML = "<input id='user_check" + j + "' type='checkbox' onclick='delete_user(" + j + ");' />";
+        row.insertCell(0).innerHTML = "<input type='checkbox' id='user_check" + j + "' onclick = 'enable_button("+j+")'>";
         row.insertCell(1).innerHTML = users_array[i].id;
         row.insertCell(2).innerHTML = users_array[i].last_name;
         row.insertCell(3).innerHTML = users_array[i].first_name;
@@ -70,7 +73,23 @@ function create_users(jfile) {
         sessionStorage.setItem("id" + j, users_array[i].id);
         j++;
     }
+    sessionStorage.setItem("table", JSON.stringify(users_array));
+    
 }
+
+
+function enable_button(id){
+    if ( document.getElementById("user_check"+id).checked == true){
+        document.getElementById("delete-btn").disabled = false;
+        document.getElementById("delete-btn").onclick = function (){
+            delete_user(id);
+        }
+    }else{
+
+        document.getElementById("delete-btn").disabled = true;
+    }
+}
+
 
 /**
  * Function delete_user
@@ -79,20 +98,21 @@ function create_users(jfile) {
  * returns none
  */
 function delete_user(id) {
-    document.getElementById("delete-btn").disabled = false;
-    document.getElementById("delete-btn").onclick = function (){
-        if(confirm("Are you sure you want to delete this user?") == true){
-            for(key of Object.keys(sessionStorage)){
-                if(id == sessionStorage["id"+id]){
-                    document.getElementById(id).remove();
-                    document.getElementById("delete-btn").disabled = true; 
-                    break;
-                }
+    if(confirm("Are you sure you want to delete this user?") == true){
+        for(key of Object.keys(sessionStorage)){
+            if(id == sessionStorage["id"+id]){
+                document.getElementById(id).remove();
+                var new_array = JSON.parse(sessionStorage.getItem("table"));
+                console.log(new_array.splice(id-1, 1));
+                sessionStorage.setItem("table", JSON.stringify(new_array));
+                document.getElementById("delete-btn").disabled = true; 
+                break;
             }
-            
-        }else{
-            document.getElementById("delete-btn").disabled = true;
-            document.getElementById("user_check"+id).checked = false;
         }
+        
+    }else{
+        document.getElementById("delete-btn").disabled = true;
+        document.getElementById("user_check"+id).checked = false;
     }
+    
 }
