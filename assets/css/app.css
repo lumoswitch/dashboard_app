@@ -56,7 +56,7 @@ header a.active {
 	height: 100%;
 	background: white;
 	border-radius: 60%;
-	margin-top: 10%;
+	margin-top: 5%;
 	padding: 5%;
 }
 
@@ -115,6 +115,7 @@ footer{
 	padding-left: 2%;
 	color: white;
 	opacity: 0.5;
+	z-index: 1;
 }
 
 #loader {

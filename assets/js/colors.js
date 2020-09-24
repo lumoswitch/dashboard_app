@@ -8,7 +8,7 @@ function colors() {
     document.getElementById("loader").style.display = "block";
     document.getElementById("myUsers").style.display = "none";
     document.getElementById("greeting").style.display = "none";
-    
+    mobile_nav();
     setTimeout(init_colors, 1000);
 }
 

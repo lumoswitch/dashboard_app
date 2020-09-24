@@ -11,19 +11,6 @@ function home_screen() {
 }
 
 /**
- * Function settings
- * Arguments: none
- * Description: Writes settings message on main div
- * returns none
- */
-function settings() {
-    document.getElementById("contents").innerHTML += "<h3>Settings</h3>";
-    document.getElementById("myUsers").style.display = "none";
-    document.getElementById("myColors").style.display = "none";
-    document.getElementById("greeting").style.display = "none";
-}
-
-/**
  * Function mobile_nav
  * Arguments: none
  * Description: changes class name in nav in order to 
@@ -69,24 +56,33 @@ function response_handler(data,callback){
         var jfile = JSON.parse(data.responseText);
         console.log(jfile);
         callback(jfile);
-       
     }
 }
 
-function init_page(){
-    
+/**
+ * Function response_handler
+ * Arguments: data -> the data the server send back 
+ *            callback -> a function to do something with the data
+ * Description: receives the data from the server and feeds the to callback
+ * returns none
+ */
+function init_home(){
     document.getElementById("contents").innerHTML += "<h3 class='animate-bottom' id='greeting'>Welcome</h3>";
     document.getElementById("loader").style.display = "none";
     document.getElementById("greeting").style.display = "block";
 }
 
+/**
+ * Function 
+ * Arguments: none
+ * Description: on page load checks if session exists if not then a request is made
+ * returns none
+ */
 window.onload = function() {
-   
-
     var loading = '\
     <div id="loader" class="load"></div> ';
     document.getElementById("contents").innerHTML += loading;
-    setTimeout(init_page, 1000);
+    setTimeout(init_home, 1000);
         
     ajaxRequest("https://reqres.in/api/products",response_handler,create_banners);
     
