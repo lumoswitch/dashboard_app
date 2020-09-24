@@ -73,6 +73,7 @@
     .grid-container {
         grid-template-columns: auto auto;
         height: 500px;
+        width: 100%;
     }
 }
 
@@ -145,13 +146,13 @@
     }
 
     .grid-container > div{
-        width: 150px;
+        width: 100%;
     }
 }
 
 @media screen and (min-width: 1100px)  {
 
     .grid-container > div{
-        width: 260px;
+        width: 100%;
     }
 }
