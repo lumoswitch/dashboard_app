@@ -89,7 +89,6 @@ function enable_button(id){
         }
     }else{
         document.getElementById("delete-btn").disabled = true;
-        document.getElementById("delete-btn").style.backgroundColor = 'gray';
     }
 }
 
@@ -111,7 +110,8 @@ function delete_user(id) {
                 document.getElementById(id).remove();
                 var new_array = table_array.splice(i, 1);
                 sessionStorage.setItem("table", JSON.stringify(table_array));
-                document.getElementById("delete-btn").disabled = true; 
+                document.getElementById("delete-btn").disabled = true;                 
+                document.getElementById("delete-btn").style.backgroundColor = 'gray';
                 break;
             }
         }
