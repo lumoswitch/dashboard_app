@@ -5,14 +5,13 @@
 
 #sub-title,#delete-btn {
     position: fixed;
-    top: 0%;
     left: 85%;
 }
 
 #delete-btn {
     top: 13%;
     color: white;
-    background-color: #008CBA;
+    background-color: grey;
     font-weight: bold;
     padding: 10px 21px;
     font-size: 0.8em;

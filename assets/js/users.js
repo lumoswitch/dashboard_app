@@ -67,7 +67,6 @@ function create_users(users_array) {
         row.insertCell(3).innerHTML = users_array[i].first_name;
         row.insertCell(4).innerHTML = users_array[i].email;
         row.insertCell(5).innerHTML = (users_array[i].avatar).substring(users_array[i].avatar.lastIndexOf('/', users_array[i].avatar.lastIndexOf('/') - 1) + 1).split('/')[0];
-        sessionStorage.setItem("id" + j, users_array[i].id);
         j++;
     }
     sessionStorage.setItem("table", JSON.stringify(users_array));
@@ -84,6 +83,7 @@ function create_users(users_array) {
 function enable_button(id){
     if (document.getElementById("user_check"+id).checked == true){
         document.getElementById("delete-btn").disabled = false;
+        document.getElementById("delete-btn").style.backgroundColor = '#008CBA';
         document.getElementById("delete-btn").onclick = function (){
             delete_user(id);
         }
