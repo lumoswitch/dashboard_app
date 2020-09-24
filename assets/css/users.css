@@ -4,13 +4,12 @@
 }
 
 #sub-title,#delete-btn {
-    position: absolute;
+    position: fixed;
     top: 0%;
     left: 85%;
 }
 
 #delete-btn {
-    position: fixed;
     top: 13%;
     color: white;
     background-color: #008CBA;
