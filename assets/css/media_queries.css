@@ -149,24 +149,7 @@
     }
 }
 
-@media screen and (min-width: 1100px) and (max-width: 1200px)  {
-
-    /* .topnav {
-        background-color: var(--nav-background-color);
-        left: 0%;
-        top: 10%;
-        padding-top: 5%;
-        height: 100%;
-        width: 22%;
-    }
-
-    table {
-        margin-left: -30px;
-    }
-
-    main {
-        left: 24%;
-    } */
+@media screen and (min-width: 1100px)  {
 
     .grid-container > div{
         width: 260px;
