@@ -89,6 +89,7 @@ function enable_button(id){
         }
     }else{
         document.getElementById("delete-btn").disabled = true;
+        document.getElementById("delete-btn").style.backgroundColor = 'grey';
     }
 }
 
