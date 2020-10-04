@@ -63,20 +63,6 @@ function init_home(){
     document.getElementById("greeting").style.display = "block";
 }
 
-/**
- * Function 
- * Arguments: none
- * Description: on page load checks if session exists if not then a request is made
- * returns none
- */
-// window.onload = function() {
-//     var loading = '\
-//     <div id="loader" class="load"></div> ';
-//     document.getElementById("contents").innerHTML += loading;
-//     setTimeout(init_home, 1000);   
-    
-// };
-
 /************************************ COLORS **************************************/
 
 /**
@@ -87,22 +73,17 @@ function init_home(){
  */
 function colors() {
     mobile_nav();
-    ajaxRequest("https://reqres.in/api/products",create_banners);
-    // setTimeout(init_colors, 1000);
+    ajaxRequest("https://reqres.in/api/products",create_colors);
 }
-
-// function init_colors(){
-//     ajaxRequest("https://reqres.in/api/products",create_banners);
-// }
 
 
 /**
- * Function create_banners
+ * Function create_colors
  * Arguments: json -> a json file
- * Description: creates the color banners 
+ * Description: adds the innformations of every color in the banners 
  * returns none
  */
-function create_banners(json){
+function create_colors(json) {
     var colors_body = '\<div id="myColors">\
     <h3 id="title">Colors</h3><h3 id="sub-title">Items: </h3>\
     <div id="colors" class="grid-container">\
@@ -114,17 +95,6 @@ function create_banners(json){
     <div id="color6"><div id="banner6" class="footer"></div></div>\
     </div></div>';
     document.getElementById("contents").innerHTML = colors_body;
-    create_colors(json);
-}
-
-
-/**
- * Function create_colors
- * Arguments: json -> a json file
- * Description: adds the innformations of every color in the banners 
- * returns none
- */
-function create_colors(json) {
     var j = 1;
     var colors_array = json.data;
     colors_array.sort((colorA, colorB) => {
@@ -156,17 +126,7 @@ function users() {
         console.log(JSON.parse(sessionStorage.getItem("table")));
         create_users(JSON.parse(sessionStorage.getItem("table")));
     }
-    // setTimeout(init_users, 1000);
 }
-
-// function init_users(){
-//     if(sessionStorage.getItem("table") == null){
-//         ajaxRequest("https://reqres.in/api/users",create_table);
-//     }else{
-//         console.log(JSON.parse(sessionStorage.getItem("table")));
-//         create_users(JSON.parse(sessionStorage.getItem("table")));
-//     }
-// }
 
 /**
  * Function create_table
@@ -195,18 +155,17 @@ function create_users(users_array) {
     var users_body = '\<div id="myUsers">\
     <h3 id="title">Users</h3><button id="delete-btn" disabled>DELETE</button>\
     <table id="myTable">\
-        <tr>\
-            <th> </th>\
-            <th>ID</th>\
-            <th>LAST NAME</th>\
-            <th>FIRST NAME</th>\
-            <th>EMAIL</th>\
-            <th>AVATAR</th>\
-        </tr>\
     </table></div>';    
 
     document.getElementById("contents").innerHTML = users_body;
     var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    row.insertCell(0).innerHTML = " ";
+    row.insertCell(1).innerHTML = Object.keys(users_array[0])[0].toUpperCase();
+    row.insertCell(2).innerHTML = Object.keys(users_array[0])[3].toUpperCase().split('_').join(' ');
+    row.insertCell(3).innerHTML = Object.keys(users_array[0])[2].toUpperCase().split('_').join(' ') ;
+    row.insertCell(4).innerHTML = Object.keys(users_array[0])[1].toUpperCase();
+    row.insertCell(5).innerHTML = Object.keys(users_array[0])[4].toUpperCase();
 
     for (var i = 0; i < users_array.length; i++) {
         var row = table.insertRow(j);
@@ -249,21 +208,27 @@ function enable_button(id){
  * returns none
  */
 function delete_user(id) {
+    console.log(document.getElementById(id));
+    console.log("ID " + id);
     if(confirm("Are you sure you want to delete this user?") == true){
         var table_array = JSON.parse(sessionStorage.getItem("table"));
         console.log(table_array);
+        
         for(var i = 0; i < table_array.length; i++){
+            console.log("TABLE ID " + table_array[i].id);
             if(id == table_array[i].id){
                 console.log("remove id: " + id);
                 console.log("in position: " + i);
                 document.getElementById(id).remove();
-                table_array.pop(id);
+                console.log(table_array[i]);
+                table_array.pop(i);
                 sessionStorage.setItem("table", JSON.stringify(table_array));
                 document.getElementById("delete-btn").disabled = true;                 
                 document.getElementById("delete-btn").style.backgroundColor = 'gray';
                 break;
             }
         }
+        
         
     }else{
         document.getElementById("delete-btn").disabled = true;

@@ -181,6 +181,7 @@ main {
     grid-template-columns: auto auto auto;
     grid-gap: 30px;
     padding-top: 6%;
+    margin-left: 0%;
 }
   
 .grid-container > div {
@@ -270,6 +271,11 @@ td, th {
     text-align: left;
     padding: 8px;
 }
+
+#myTable > tbody:nth-child(1) > tr:nth-child(1) {
+    font-family: var(--fonts);
+    font-weight: bold;
+}
   
 tbody>tr:nth-child(even) {
     background-color: #f5f5f5;
@@ -280,8 +286,13 @@ thead{
 }
 
 /*********************************************************** MEDIA QUERIES *************************************************************/
-@media screen and (max-width: 599px)  {
 
+@media screen and (max-width: 599px)  {
+    .grid-container {
+        grid-template-columns: auto;
+        height: 500px;
+        width: 100%;
+    }
     #myUsers {
         overflow-y: scroll;
         height: 100%;
@@ -353,9 +364,10 @@ thead{
     }
 
     .grid-container {
-        grid-template-columns: auto auto;
-        height: 500px;
-        width: 100%;
+        grid-template-columns: auto;
+        height: 100%;
+        /* width: 100%; */
+        margin-left: 25%;
     }
 }
 
@@ -372,6 +384,7 @@ thead{
         display: block; 
         right: 2.5%;
         position: fixed;
+        top: 2%;
 	}
 
 	.topnav.responsive {
@@ -412,8 +425,7 @@ thead{
 
     .topnav {
         background-color: var(--nav-background-color);
-        /* left: 0%; */
-        top: 10%;
+        top: 12%;
         padding-top: 5%;
         height: 100%;
         width: 22%;
